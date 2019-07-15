@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+
+{% block content%}
+
+<h1> BUILD A BLOG! </h1>
+    <form method ='post'>
+        <div>
+            {% for blog in blogs %}
+            <h2> <a href= "{{url_for('post',blog_id=blog.id) }}" > {{blog.title}} </a> </h2>
+            <p> {{blog.body}} </p>
+            <hr>
+            {% endfor %}
+            
+        </div>
+
+    </form>
+
+    
+
+    
+ 
+
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> {{title}} </title>
+        <nav>
+                <ul>
+                    <li> <a href= "/blog" > Main Page </a> </li> 
+                    <li> <a href = "/newpost"> Add a Blog Entry </a></li>
+                </ul>
+            </nav>
+        <style type="text/css">
+            .error { 
+                color: red;
+                display: inline-table;
+            }
+            nav ul li{
+                text-align: center;
+                display: inline;
+                padding: 5px;
+            }
+            h1 {
+                text-align: center;
+            }
+            hr {
+                border-top: 1px dotted gray;
+            }
+            body{
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                padding: 20px;
+            }
+
+            h2 {
+                color:
+            }
+
+            </style>        
+    </head>
+<body>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        <ul>
+            {% for category,message in messages %}
+            <li class = {{category}}> {{ message }}</li>
+            {% endfor %}
+        </ul>
+        
+        {% endwith %}
+<header> 
+</header>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
