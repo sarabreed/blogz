@@ -2,12 +2,7 @@
 <html>
     <head>
         <title> {{title}} </title>
-        <nav>
-                <ul>
-                    <li> <a href= "/blog" > Main Page </a> </li> 
-                    <li> <a href = "/newpost"> Add a Blog Entry </a></li>
-                </ul>
-            </nav>
+       
         <style type="text/css">
             .error { 
                 color: red;
@@ -33,9 +28,14 @@
                 color:
             }
 
+            footer {
+                font-style: italic
+            }
+
             </style>        
     </head>
 <body>
+    
         {% with messages = get_flashed_messages(with_categories=True) %}
         <ul>
             {% for category,message in messages %}
@@ -46,6 +46,16 @@
         {% endwith %}
 <header> 
 </header>
+
+<nav>
+        <ul>
+            <li> <a href = "/"> Home <a> </li>
+            <li> <a href= "/blog" > All Posts </a> </li> 
+            <li> <a href = "/newpost"> Add a Blog Entry </a></li>
+            <li style="float: right"> <a href ='/logout'> Log Out </a></li>
+            <li style="float: right"> <a href ='/login'> Log In </a></li>
+        </ul>
+</nav>
 
     {% block content %}
     {% endblock %}

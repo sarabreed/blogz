@@ -1,0 +1,21 @@
+{% extends "base.html" %} 
+
+{% block content%}
+
+<h1> ALL BLOG POSTS ON BLOGZ </h1>
+    <form method ='post'>
+        <div>
+            {% for blog in blogs %}
+            <h2> <a href= "{{url_for('post',blog_id=blog.id) }}" > {{blog.title}} </a> </h2>
+            <p> {{blog.body}} </p>
+            <footer> written by {{blog.owner_id}} </footer>
+            <!-- how do I pass in the username not the id and then link to the singleUser page  -->
+            <hr>
+            {% endfor %}
+            
+        </div>
+
+    </form>
+ 
+
+{% endblock %}

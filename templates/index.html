@@ -2,22 +2,16 @@
 
 {% block content%}
 
-<h1> BUILD A BLOG! </h1>
+<h1> ALL BLOGZ USERS </h1>
     <form method ='post'>
         <div>
-            {% for blog in blogs %}
-            <h2> <a href= "{{url_for('post',blog_id=blog.id) }}" > {{blog.title}} </a> </h2>
-            <p> {{blog.body}} </p>
-            <hr>
+            {% for user in users %}
+            <li style="text-align:left;"> <a href= > {{user.username}} </a></li>
             {% endfor %}
-            
         </div>
 
     </form>
-
-    
-
-    
+<!-- still need to create links to singler user page. how do I connect both blogs and users here -->
  
 
 {% endblock %}
