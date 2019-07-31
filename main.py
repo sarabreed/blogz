@@ -25,7 +25,7 @@ class User(db.Model):
     password = db.Column(db.String(50))
     blogs = db.relationship('Blog', backref='owner')
     
-
+# this initializer is what allows us to use dot notation
     def __init__(self, username, password):
         self.username = username
         self.password = password
@@ -40,7 +40,7 @@ class Blog(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 #look at flick-list as well
-#this sets the default value
+#these are the values that you use to (dot notation) to link the tables
     def __init__(self, title, body, owner):
         self.title = title
         self.body = body
@@ -49,7 +49,7 @@ class Blog(db.Model):
 # this will run for every request
 @app.before_request
 def require_login():
-    allowed_routes = ['login', 'signup', 'blogs', 'index', 'post']
+    allowed_routes = ['login', 'signup', 'blogs', 'index','post']
     if request.endpoint not in allowed_routes and 'username' not in session:
         return redirect ('/login')
 
@@ -125,22 +125,22 @@ def logout():
     return redirect ('/blog')
 
 
-@app.route('/', methods = ['POST', 'GET'])
+@app.route('/')
 def index():
     
     users= User.query.all()
+    selected_user = request.args.get('id')
+    if selected_user != None:
+        user = User.query.get(selected_user)
+        blogs = Blog.query.filter_by(owner_id=selected_user)
+        return render_template('singleUser.html', user=user, blogs=blogs)
 
-    return render_template('index.html', title= "Blogz!", users=users)
+    return render_template('index.html', title= "Blogz!", users=users, selected_user=selected_user)
+#go back and ask why we have user=user in render templates.
 
 @app.route('/blog', methods = ['POST', 'GET'])
 def blogs():
-    # owner = User.query.filter_by(username=session['username']).first()
-    # if request.method == 'GET':
-    #     
-    #     blogs = Blog.query.filter_by(owner=owner).all()
-
-    #     return render_template('singleuser.html', title = "Blogz!", blogs = blogs)
-    
+        
     blogs= Blog.query.all()
 
     return render_template('blogs.html', title= "Blogz!", blogs = blogs)
@@ -179,15 +179,15 @@ def newpost():
 
     return render_template('post.html', blog= blog)
         
-@app.route('/user')
-def user_posts():
+# @app.route('/user')
+# def user_posts():
 
-    # owner= User.query.filter_by(username = ['username']).all()
+#     # owner= User.query.filter_by(id=user_id).first()
 
-    # blogs = Blog.query.filter_by(owner=owner).all()
-#     # user_id = request.args.get('user_id')
+#     # blogs = Blog.query.filter_by(owner_id).all()
+# #     # user_id = request.args.get('user_id')
 
-    return render_template('singleuser.html')
+#     return render_template('singleuser.html', blogs = blogs)
 
 # @app.route('/post')
 # def post(blog_id):

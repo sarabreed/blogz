@@ -6,7 +6,7 @@
     <form method ='post'>
         <div>
             {% for user in users %}
-            <li style="text-align:left;"> <a href= > {{user.username}} </a></li>
+            <li style="text-align:left;"> <a href ="/?id={{user.id}}"> {{user.username}} </a></li>
             {% endfor %}
         </div>
 
