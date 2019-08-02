@@ -10,7 +10,7 @@
             <p> {{blog.body}} </p>
             <footer> written by <a href ="/?id={{blog.owner.id}}"> {{blog.owner.username}} </a></footer>
             <!-- you can have multiple dot notations - first identifying the table, column or input data, -- pass in the username not the id and then link to the singleUser page  -->
-            <!--  -->
+            <!--{{url_for('post',blog_id=blog.id) }}  -->
             <hr>
             {% endfor %}
             
@@ -20,3 +20,4 @@
  
 
 {% endblock %}
+

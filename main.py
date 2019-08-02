@@ -142,7 +142,7 @@ def index():
 def blogs():
         
     blogs= Blog.query.all()
-
+    
     return render_template('blogs.html', title= "Blogz!", blogs = blogs)
   
 
